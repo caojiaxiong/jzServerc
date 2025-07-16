@@ -122,7 +122,8 @@ app.post('/api/upload', upload.single('image'), async (req, res) => {
 
 
     const result = await cloudinary.uploader.upload('data:image/png;base64,' + fileBuffer.toString('base64'), {
-      resource_type: 'auto'
+      resource_type: 'auto',
+          folder:"jz",
     });
     console.log('result', result.secure_url);
 
