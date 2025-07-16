@@ -103,38 +103,38 @@ const authenticateToken = (req, res, next) => {
   })
 }
 // 
-// const multer = require('multer');
-// // 图片
-// const cloudinary = require('cloudinary').v2
-// cloudinary.config({
-//   cloud_name: 'dws0bkxa2',
-//   api_key: '725946551722924',
-//   api_secret: '0eG4XL2EDl4YqMRTBNNxPeXRkD0' // Click 'View API Keys' above to copy your API secret
-// });
-// const storage = multer.memoryStorage();
-// // const upload = multer({ storage });
-//  const upload = multer();
-// app.post('/api/upload', upload.single('image'), async (req, res) => {
+const multer = require('multer');
+// 图片
+const cloudinary = require('cloudinary').v2
+cloudinary.config({
+  cloud_name: 'dws0bkxa2',
+  api_key: '725946551722924',
+  api_secret: '0eG4XL2EDl4YqMRTBNNxPeXRkD0' // Click 'View API Keys' above to copy your API secret
+});
+const storage = multer.memoryStorage();
+// const upload = multer({ storage });
+ const upload = multer();
+app.post('/api/upload', upload.single('image'), async (req, res) => {
 
-//   try {
-//     const fileBuffer = req.file.buffer;
+  try {
+    const fileBuffer = req.file.buffer;
 
-//     const result = await cloudinary.uploader.upload('data:image/png;base64,' + fileBuffer.toString('base64'), {
-//       resource_type: 'auto'
-//     });
-//     console.log('result', result.secure_url);
+    const result = await cloudinary.uploader.upload('data:image/png;base64,' + fileBuffer.toString('base64'), {
+      resource_type: 'auto'
+    });
+    console.log('result', result.secure_url);
 
-//     res.json({
-//       url: result.secure_url,
-//       success: true,
-//       message: '上传成功',
-//     });
-//   } catch (error) {
-//     console.log(error, '报错');
-//     res.status(500).json({ error: 'Upload failed' });
-//   }
+    res.json({
+      url: result.secure_url,
+      success: true,
+      message: '上传成功',
+    });
+  } catch (error) {
+    console.log(error, '报错');
+    res.status(500).json({ error: 'Upload failed' });
+  }
 
-// });
+});
 
 // 路由
 
