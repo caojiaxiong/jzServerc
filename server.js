@@ -112,12 +112,14 @@ cloudinary.config({
   api_secret: '0eG4XL2EDl4YqMRTBNNxPeXRkD0' // Click 'View API Keys' above to copy your API secret
 });
 // const storage = multer.memoryStorage();
-// const upload = multer({ storage });
-
+const upload = multer();
+// 
 app.post('/api/upload', upload.single('image'), async (req, res) => {
 
   try {
+      console.log(req,'fileBuffer');
     const fileBuffer = req.file.buffer;
+
 
     const result = await cloudinary.uploader.upload('data:image/png;base64,' + fileBuffer.toString('base64'), {
       resource_type: 'auto'
